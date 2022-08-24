@@ -11,14 +11,21 @@ const Example = () => {
   const changeAge = (e) => {
     setPerson({name: person.name, age: e.target.value});
   }
+
+  const reset = () => {
+    setPerson({name: "", age: ""});
+  }
   return (
     <>
       <h3>{`Name:${person.name}`}</h3>
       <h3>{`Age:${person.age}`}</h3>
 
       <input type="text" onChange={changeName} value={person.name} />
-      <input type="text" onChange={changeAge} value={person.age} />
+      <input type="number" onChange={changeAge} value={person.age} />
 
+      <div>
+        <button onClick={reset}>リセット</button>
+      </div>
     </>
   );
 };
