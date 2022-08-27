@@ -1,9 +1,20 @@
+import { Button, HStack, Input, Toast, useToast } from "@chakra-ui/react";
 import { useState } from "react";
 const Form = ({ createTodo }) => {
   const [enteredTodo, setEnteredTodo] = useState("");
+  const toast = useToast();
 
   const addTodo = (e) => {
     e.preventDefault();
+
+    if(!enteredTodo){
+      toast({
+        title:"新しいタスクを入力してください",
+        status:"error",
+        duration:2000,
+        isClosable:true
+      })
+    }
 
     const newTodo = {
       id: Math.floor(Math.random() * 1e5),
@@ -15,16 +26,27 @@ const Form = ({ createTodo }) => {
     setEnteredTodo("");
   };
   return (
-    <div>
-      <form onSubmit={addTodo}>
-        <input
-          type="text"
+    <form onSubmit={addTodo}>
+      <HStack>
+        <Input
+          placeholder="新しいタスク"
+          _placeholder={{opacity:"0.3", color:"gray.500"}}
+          variant="flushed"
           value={enteredTodo}
           onChange={(e) => setEnteredTodo(e.target.value)}
+          bgColor="white"
+          p={3}
         />
-        <button>追加</button>
-      </form>
-    </div>
+        <Button
+          colorScheme={"blue"}
+          size="md"
+          variant={"outline"}
+          px={7}
+          type={"submit"}
+          bgColor="white"
+        >追加</Button>
+      </HStack> 
+    </form>
   );
 };
 
