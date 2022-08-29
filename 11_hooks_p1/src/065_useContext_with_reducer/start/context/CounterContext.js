@@ -1,9 +1,9 @@
-import { createContext, useReducer, useContext } from "react";
+import { createContext, useContext, useReducer } from "react";
 
 const CounterContext = createContext();
 const CounterDispatchContext = createContext();
 
-export const CounterProvider = ({children}) => {
+const CounterProvider = ({ children }) => {
     const [state, dispatch] = useReducer((prev, { type, step }) => {
         switch (type) {
           case "+":
@@ -16,16 +16,19 @@ export const CounterProvider = ({children}) => {
       }, 0);
     return (
         <CounterContext.Provider value={state}>
-            <CounterDispatchContext value={dispatch}>
+            <CounterDispatchContext.Provider value={dispatch}>
                 {children}
-            </CounterDispatchContext>
+            </CounterDispatchContext.Provider>
         </CounterContext.Provider>
-    );
+    )
 }
 
-export const useCounter = () => {
+const useCounter = () => {
     return useContext(CounterContext);
 }
-export const useCounterDispatch = () => {
-    return useContext(CounterDispatchContext);   
+
+const useCounterDispatch = () => {
+    return useContext(CounterDispatchContext);
 }
+
+export { CounterProvider, useCounter, useCounterDispatch }
