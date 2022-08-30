@@ -22,6 +22,7 @@ const todosList = [
 ];
 
 const todoReducer = (todos, action) => {
+  console.log(action);
   switch (action.type) {
     case "todo/add":
       return [...todos, action.todo];
