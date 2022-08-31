@@ -1,5 +1,14 @@
-import { useState } from "react";
+import { useState, StrictMode } from "react";
 import "./Example.css";
+
+
+const StrictComp = () => {
+  return (
+    <StrictMode>
+      <Example />
+    </StrictMode>
+  );
+}
 
 const Example = () => {
   console.log("render");
@@ -38,4 +47,4 @@ const Example = () => {
   );
 };
 
-export default Example;
+export default StrictComp;
