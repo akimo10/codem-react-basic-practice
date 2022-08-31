@@ -1,3 +1,5 @@
+import { add } from './add';
+
 const Example = () => {
   
 };

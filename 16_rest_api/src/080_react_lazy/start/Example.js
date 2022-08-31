@@ -1,5 +1,7 @@
-import { useState } from "react";
-import ComponentA from "./components/ComponentA";
+import { useState, lazy } from "react";
+// import ComponentA from "./components/ComponentA";
+
+const LazyComponentA = lazy(() => import("./components/ComponentA"));
 
 const Example = () => {
   const [compA, setCompA] = useState(false);
@@ -7,7 +9,7 @@ const Example = () => {
   return (
     <>
       <button onClick={() => setCompA((prev) => !prev)}>ComponentA</button>
-      {compA && <ComponentA />}
+      {compA && <LazyComponentA />}
     </>
   );
 };
